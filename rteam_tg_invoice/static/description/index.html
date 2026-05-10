@@ -1,0 +1,180 @@
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12" style="text-align:center;">
+      <h1 style="font-size:42px;color:#0A1628;font-weight:800;margin-bottom:8px;">
+        One-tap Vendor Bill approvals in Telegram
+      </h1>
+      <p style="font-size:18px;color:#444;max-width:680px;margin:8px auto 18px;line-height:1.5;">
+        Stop chasing your CFO with "please validate BILL/2026/0123". Above-threshold
+        Vendor Bills fire an inline Telegram message with Approve / Reject /
+        View-in-Odoo buttons. One tap and the bill posts in Odoo. Chatter
+        records who approved and when.
+      </p>
+      <p style="font-size:15px;color:#0A1628;font-weight:600;margin-top:18px;border:2px solid #00D4AA;border-radius:6px;display:inline-block;padding:8px 18px;">
+        No VPN. No Odoo login on a phone. Sign-off before money leaves the company.
+      </p>
+      <div style="margin-top:20px;">
+        <span style="display:inline-block;padding:4px 12px;border:1px solid #0A1628;color:#0A1628;border-radius:3px;font-family:monospace;font-size:12px;margin:2px;">Odoo 19</span>
+        <span style="display:inline-block;padding:4px 12px;border:2px solid #00B894;color:#00B894;border-radius:3px;font-weight:bold;font-size:12px;margin:2px;">LGPL-3 Free</span>
+        <span style="display:inline-block;padding:4px 12px;border:1px solid #7C5CFC;color:#7C5CFC;border-radius:3px;font-size:12px;margin:2px;">Vendor Bills only</span>
+        <span style="display:inline-block;padding:4px 12px;border:1px solid #7C5CFC;color:#7C5CFC;border-radius:3px;font-size:12px;margin:2px;">Self-approve safe</span>
+        <span style="display:inline-block;padding:4px 12px;border:1px solid #0A1628;color:#0A1628;border-radius:3px;font-size:12px;margin:2px;">Community &amp; Enterprise</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container oe_dark">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span6" style="text-align:center;">
+      <img src="screenshots/01_telegram_approval.png" alt="Telegram message with inline Approve / Reject / View in Odoo buttons on a Vendor Bill"
+           style="max-width:100%;border:1px solid #e0e0e0;border-radius:6px;"/>
+    </div>
+    <div class="oe_span6">
+      <h2 style="color:#0A1628;font-weight:700;">What the approver sees</h2>
+      <p style="font-size:15px;line-height:1.6;color:#333;">
+        A short message arrives in Telegram with the bill summary
+        (vendor, amount, line count, reference) and three buttons. Approve
+        flips the move to posted in Odoo. Reject keeps it in draft and
+        posts a chatter note. View in Odoo deep-links to the bill form.
+      </p>
+      <p style="font-size:14px;color:#666;line-height:1.6;">
+        After a tap the buttons collapse into a status line ("Approved by
+        Anna at 14:32") so the same message cannot be tapped twice and the
+        chat history reads as an audit trail your finance auditor can
+        actually use.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12" style="text-align:center;">
+      <h2 style="color:#0A1628;font-weight:700;">Setup in three clicks</h2>
+    </div>
+  </div>
+  <div class="oe_row oe_spaced">
+    <div class="oe_span4" style="text-align:center;">
+      <div style="width:64px;height:64px;border:3px solid #7C5CFC;color:#7C5CFC;border-radius:50%;font-size:28px;font-weight:bold;line-height:58px;margin:0 auto 12px;box-sizing:border-box;">1</div>
+      <h4 style="color:#0A1628;">Install rteam_tg_auth first</h4>
+      <p style="font-size:14px;line-height:1.5;color:#333;">
+        This module sits on top of the
+        <a href="https://apps.odoo.com/apps/modules/19.0/rteam_tg_auth/" style="color:#7C5CFC;">Telegram 2FA + Approvals core</a>.
+        Configure the bot once there (60 seconds via @BotFather).
+      </p>
+    </div>
+    <div class="oe_span4" style="text-align:center;">
+      <div style="width:64px;height:64px;border:3px solid #7C5CFC;color:#7C5CFC;border-radius:50%;font-size:28px;font-weight:bold;line-height:58px;margin:0 auto 12px;box-sizing:border-box;">2</div>
+      <h4 style="color:#0A1628;">Bind your approver to Telegram</h4>
+      <p style="font-size:14px;line-height:1.5;color:#333;">
+        The approver opens My Preferences -&gt; Telegram 2FA, clicks
+        <strong>Bind Telegram</strong>, taps the deep link, presses Send.
+        Bot replies "Bound to &lt;login&gt;".
+      </p>
+    </div>
+    <div class="oe_span4" style="text-align:center;">
+      <div style="width:64px;height:64px;border:3px solid #7C5CFC;color:#7C5CFC;border-radius:50%;font-size:28px;font-weight:bold;line-height:58px;margin:0 auto 12px;box-sizing:border-box;">3</div>
+      <h4 style="color:#0A1628;">Set Threshold + Default approver</h4>
+      <p style="font-size:14px;line-height:1.5;color:#333;">
+        Settings -&gt; Telegram -&gt; Vendor Bill Approvals. Pick a
+        threshold amount and the approver. Done. Next post of an
+        above-threshold bill routes through Telegram automatically.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container oe_dark">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span6">
+      <h3 style="color:#0A1628;">
+        <span style="display:inline-block;padding:2px 10px;border:2px solid #7C5CFC;color:#7C5CFC;border-radius:4px;font-size:12px;font-weight:bold;letter-spacing:0.5px;margin-right:10px;vertical-align:middle;">SCOPE</span>
+        Vendor Bills only, by design
+      </h3>
+      <p style="font-size:15px;line-height:1.6;color:#333;">
+        Only Vendor Bills (<code>account.move</code> with
+        <code>move_type='in_invoice'</code>) are gated. Customer Invoices,
+        Vendor Refunds and Customer Refunds post normally. Most companies
+        only want approval on inbound spend, so we don't make you toggle
+        scope to get a sane default.
+      </p>
+      <p style="font-size:14px;color:#666;line-height:1.6;">
+        Self-approve is blocked: when requester == approver the bill
+        posts without a Telegram detour, and the chatter explains why
+        (no silent skips, no surprised users).
+      </p>
+    </div>
+    <div class="oe_span6">
+      <img src="screenshots/02_settings.png" alt="Vendor Bill Approvals block in Odoo Settings showing Threshold and Default approver fields"
+           style="max-width:100%;border:1px solid #e0e0e0;border-radius:4px;"/>
+    </div>
+  </div>
+
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <h3 style="color:#0A1628;">
+        <span style="display:inline-block;padding:2px 10px;border:2px solid #7C5CFC;color:#7C5CFC;border-radius:4px;font-size:12px;font-weight:bold;letter-spacing:0.5px;margin-right:10px;vertical-align:middle;">SAFE</span>
+        Hard to misuse
+      </h3>
+      <ul style="font-size:15px;line-height:1.7;color:#333;">
+        <li>Re-posting a bill that already has an open Telegram request
+        raises a clear error rather than spawning a duplicate message.</li>
+        <li>Each inline button carries an HMAC-signed callback. An attacker
+        who learns a request id alone cannot forge a tap without the
+        per-instance webhook secret.</li>
+        <li>The bot token never leaves your database. Telegram talks
+        directly to your Odoo URL, no Rteam-hosted relay.</li>
+        <li>Approver reopens the bill in Odoo? The header shows a "View
+        Telegram approval" button so they can see exactly which TG message
+        is in flight.</li>
+        <li>Stale requests auto-expire on a 30-minute cron with a chatter
+        note on the source bill — re-post the bill to get a fresh
+        request out.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12" style="text-align:center;">
+      <h2 style="color:#0A1628;font-weight:700;">Part of a planned family</h2>
+      <p style="font-size:15px;line-height:1.6;color:#333;max-width:680px;margin:0 auto;">
+        This module is one of several source-model glues on top of
+        <a href="https://apps.odoo.com/apps/modules/19.0/rteam_tg_auth/" style="color:#7C5CFC;font-weight:600;">rteam_tg_auth</a>.
+        The same approval ledger powers the Purchase Orders glue (already
+        live), and Time Off + Expenses are next on the roadmap.
+      </p>
+      <p style="font-size:14px;color:#666;margin-top:14px;">
+        Building your own integration is one method on the source model:
+        <code>on_rteam_tg_approval_resolved(request, new_state)</code>.
+        See <a href="https://github.com/RteamAgency/rteam-tg-invoice" style="color:#7C5CFC;">github.com/RteamAgency/rteam-tg-invoice</a>
+        for the working pattern.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container oe_dark">
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12" style="text-align:center;">
+      <h3 style="color:#0A1628;">Other Rteam apps</h3>
+      <p style="font-size:14px;color:#444;margin-bottom:14px;">
+        We ship a small family of focused free Odoo apps. If this one helped, you may also like:
+      </p>
+      <p style="font-size:14px;line-height:1.8;">
+        <a href="https://apps.odoo.com/apps/modules/19.0/rteam_tg_auth/" style="color:#7C5CFC;font-weight:600;">Telegram 2FA + Approvals (core)</a> &nbsp;&middot;&nbsp;
+        <a href="https://apps.odoo.com/apps/modules/19.0/rteam_tg_purchase/" style="color:#7C5CFC;font-weight:600;">PO Approvals via Telegram</a> &nbsp;&middot;&nbsp;
+        <a href="https://apps.odoo.com/apps/modules/19.0/odoo_health_check/" style="color:#7C5CFC;font-weight:600;">Odoo Health Check</a> &nbsp;&middot;&nbsp;
+        <a href="https://apps.odoo.com/apps/modules/19.0/rteam_prozorro/" style="color:#7C5CFC;font-weight:600;">Prozorro Connector</a> &nbsp;&middot;&nbsp;
+        <a href="https://apps.odoo.com/apps/modules/19.0/rteam_fsm_repair/" style="color:#7C5CFC;font-weight:600;">FSM + Repair</a>
+      </p>
+      <p style="font-size:13px;color:#666;margin-top:18px;">
+        Maintained by <a href="https://rteam.agency" style="color:#7C5CFC;">Rteam</a> &middot;
+        Issues + roadmap on <a href="https://github.com/RteamAgency/rteam-tg-invoice" style="color:#7C5CFC;">GitHub</a> &middot;
+        Support: <a href="mailto:alex@rteam.top" style="color:#7C5CFC;">alex@rteam.top</a>
+      </p>
+    </div>
+  </div>
+</section>
