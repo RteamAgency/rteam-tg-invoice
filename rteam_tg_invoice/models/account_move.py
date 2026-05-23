@@ -76,6 +76,31 @@ class AccountMove(models.Model):
             return False
         return approver
 
+    def _rteam_tg_preflight(self):
+        """Validate fields required to post a Vendor Bill BEFORE sending it
+        for Telegram approval. Raises UserError listing every missing field.
+
+        Without this check, the approver would tap Approve in Telegram and
+        the auto-post would silently fail (chatter only), leaving the bill
+        stuck in Draft with no clear signal back to the requester.
+        """
+        self.ensure_one()
+        missing = []
+        if not self.invoice_date:
+            missing.append(_("Bill Date"))
+        if not self.partner_id:
+            missing.append(_("Vendor"))
+        if not self.invoice_line_ids:
+            missing.append(_("Invoice lines"))
+        if missing:
+            raise UserError(
+                _(
+                    "Cannot send %(bill)s for Telegram approval. "
+                    "Fill the following field(s) and click Confirm again: %(fields)s."
+                )
+                % {"bill": self.display_name, "fields": ", ".join(missing)}
+            )
+
     def _rteam_tg_gate_skip_reason(self):
         """Why was a Vendor Bill candidate NOT gated? Returns a string only
         when the chatter benefits from explanation: the move was a real
@@ -122,6 +147,7 @@ class AccountMove(models.Model):
         for move in self:
             approver = move._rteam_tg_should_gate()
             if approver:
+                move._rteam_tg_preflight()
                 gated_moves |= move
             else:
                 passthrough_moves |= move

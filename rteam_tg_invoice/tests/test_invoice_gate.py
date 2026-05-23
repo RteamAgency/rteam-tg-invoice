@@ -210,6 +210,24 @@ class TestInvoiceGate(TransactionCase):
         self.assertTrue(ok)
         self.assertEqual(bill.state, "draft", "Reject must NOT post")
 
+    # --------------------------------------------------------------- preflight
+
+    def test_preflight_blocks_gate_when_invoice_date_missing(self):
+        self._set_gate(threshold=100, approver_id=self.approver.id)
+        bill = self._bill(qty=10, price=100.0)
+        bill.invoice_date = False
+        with self._patched_tg():
+            with self.assertRaises(UserError) as cm:
+                bill.with_user(self.requester).action_post()
+        self.assertIn("Bill Date", str(cm.exception))
+        self.assertEqual(
+            self.env["rteam.tg.approval.request"].search_count(
+                [("source_model", "=", "account.move"), ("source_id", "=", bill.id)]
+            ),
+            0,
+            "Preflight must run BEFORE the approval request is created",
+        )
+
     def test_pending_request_reflected_on_bill_form(self):
         self._set_gate(threshold=100, approver_id=self.approver.id)
         bill = self._bill(qty=10, price=100.0)
