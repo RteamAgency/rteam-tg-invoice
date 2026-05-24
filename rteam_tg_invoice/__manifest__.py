@@ -1,11 +1,11 @@
 {
-    "name": "Rteam Telegram Approvals: Vendor Bills",
+    "name": "Telegram Approvals: Vendor Bills",
     "version": "19.0.1.1.0",
     "category": "Accounting",
     "summary": "One-tap Vendor Bill approvals in Telegram. CFO sign-off from a phone before money leaves the company.",
     "description": """
-Rteam Telegram Approvals: Vendor Bills
-======================================
+Telegram Approvals: Vendor Bills
+================================
 
 Stop chasing your CFO with "please validate vendor bill BILL/2026/0123".
 When a Vendor Bill above the configured threshold is posted, an inline
