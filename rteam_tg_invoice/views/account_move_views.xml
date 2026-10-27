@@ -12,7 +12,7 @@
                 <button name="rteam_tg_open_pending_request"
                         type="object"
                         string="View Telegram approval"
-                        icon="fa-telegram"
+                        icon="oi_telegram"
                         invisible="not rteam_tg_has_pending"/>
             </xpath>
         </field>
