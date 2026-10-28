@@ -16,10 +16,26 @@ class TestInvoiceGate(TransactionCase):
         params.set_param("rteam_tg_auth.webhook_secret", "deadbeef" * 4)
         params.set_param("rteam_tg_auth.bot_username", "test_bot")
 
+        # A database without demo data has no chart of accounts: no purchase
+        # journal, no expense account for the bill lines.
+        company = cls.env.company
+        if not cls.env["account.journal"].search_count(
+            [("type", "=", "purchase"), ("company_id", "=", company.id)]
+        ):
+            cls.env["account.chart.template"].try_loading("generic_coa", company=company)
+
+        # Billing rights only: what a bookkeeper and an approving CFO hold.
+        billing = cls.env.ref("account.group_account_invoice")
         cls.requester = cls.env["res.users"].create(
-            {"name": "Bookkeeper Joe", "login": "bookkeeper_joe_inv"}
+            {
+                "name": "Bookkeeper Joe",
+                "login": "bookkeeper_joe_inv",
+                "group_ids": [(6, 0, [billing.id])],
+            }
         )
-        cls.approver = cls.env["res.users"].create({"name": "CFO Anna", "login": "cfo_anna_inv"})
+        cls.approver = cls.env["res.users"].create(
+            {"name": "CFO Anna", "login": "cfo_anna_inv", "group_ids": [(6, 0, [billing.id])]}
+        )
         cls.env["rteam.tg.binding"].create(
             {
                 "user_id": cls.approver.id,

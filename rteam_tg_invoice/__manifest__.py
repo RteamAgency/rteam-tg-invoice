@@ -1,6 +1,6 @@
 {
     "name": "Telegram Approvals: Vendor Bills",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.1.1",
     "category": "Accounting",
     "summary": "One-tap Vendor Bill approvals in Telegram. CFO sign-off from a phone before money leaves the company.",
     "description": """

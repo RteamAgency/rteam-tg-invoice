@@ -8,6 +8,7 @@ from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
 VENDOR_BILL = "in_invoice"
+PENDING_FIELDS = ["rteam_tg_pending_request_id", "rteam_tg_has_pending"]
 
 
 class AccountMove(models.Model):
@@ -163,6 +164,10 @@ class AccountMove(models.Model):
                 move.message_post(body=reason, subtype_xmlid="mail.mt_note")
 
         for move in gated_moves:
+            # Neither field is stored nor depends on the approval rows: read
+            # it fresh, or a second Confirm in the same transaction sends a
+            # second approval request.
+            move.invalidate_recordset(PENDING_FIELDS)
             existing = move.rteam_tg_pending_request_id
             if existing:
                 raise UserError(
@@ -181,6 +186,7 @@ class AccountMove(models.Model):
                 summary=summary,
                 requester_user=self.env.user,
             )
+            move.invalidate_recordset(PENDING_FIELDS)
             move.message_post(
                 body=_(
                     "Telegram approval request sent to %(approver)s. "
