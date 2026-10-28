@@ -45,15 +45,9 @@ class AccountMove(models.Model):
     @api.model
     def _rteam_tg_invoice_settings(self):
         params = self.env["ir.config_parameter"].sudo()
-        try:
-            threshold = float(params.get_param("rteam_tg_invoice.threshold", "0") or "0")
-        except (TypeError, ValueError):
-            threshold = 0.0
-        approver_id = params.get_param("rteam_tg_invoice.approver_user_id")
-        try:
-            approver_id = int(approver_id) if approver_id else 0
-        except (TypeError, ValueError):
-            approver_id = 0
+        # Missing or non-numeric values read as the default, 0.
+        threshold = params.get_float("rteam_tg_invoice.threshold")
+        approver_id = params.get_int("rteam_tg_invoice.approver_user_id")
         approver = self.env["res.users"].sudo().browse(approver_id) if approver_id else None
         return threshold, approver
 
